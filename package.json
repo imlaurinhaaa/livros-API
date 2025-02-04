@@ -1,0 +1,22 @@
+{
+  "name": "livros-api",
+  "version": "1.0.0",
+  "description": "Atividade destinada para Back-End",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "JS",
+    "SENAI",
+    "Back-End"
+  ],
+  "author": "Laura Violla",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9",
+    "uuid": "^11.0.5"
+  }
+}
