@@ -1,4 +1,4 @@
-const Book = require("../models/book");
+const Book = require("../models/Book");
 const BookList = require("../models/BookList");
 
 const lista = new BookList();
@@ -13,11 +13,11 @@ const router = {
             if (!title || !author || !publisher || !yearPublication) {
                 throw new Error("Todos os campos são obrigatórios");
             }
-            const page = new Book(title, author, publisher, yearPublication);
-            lista.addBook(page);
+            const book = new Book(title, author, publisher, yearPublication);
+            lista.addBook(book);
             res.status(200).json({ message: "Livro adicionado com sucesso!" });
         } catch (error) {
-            res.status(400).json({ message: "Erro ao adicionar livro", error });
+            res.status(400).json({ message: "Erro ao adicionar livro"});
         }
     },
 
@@ -26,44 +26,34 @@ const router = {
             const books = lista.getAllBooks();
             res.status(200).json(books);
         } catch (error) {
-            res.status(400).json({ message: "Erro ao buscar livros", error });
+            res.status(404).json({ message: "Erro ao buscar livros"});
         }
     },
 
-    getBooksById: (req, res) => {
+    getBookById: (req, res) => {
         try {
             const id = req.params.id;
-            res.status(200).jsoon(lista.getBookById(id));
+            res.status(200).json(lista.getBookById(id));
         } catch (error) {
-            res.status(404).json({ message: "Livro não encontrado", error });
+            res.status(404).json({ message: "Livro não encontrado"});
         }
     },
 
     updateBook: (req, res) => {
         try {
-            const id = req.params.id;
-            const book = req.body;
-            lista.updateBook(id, book);
-            res.status(202).json({ message: "Livro atualizado com sucesso!" });
+            res.status(200).json(lista.updateBook(req.params.id, req.body));
         } catch (error) {
-            res.status(404).json({ message: "Erro ao atualizar livro", error });
+            res.status(404).json({ message: "Erro ao atualizar livro"});
         }
     },
 
     deleteBook: (req, res) => {
         try {
-            const id = req.params.id;
-            res.status(200).json(lista.deleteBook(id));
+            const book = req.params.id;
+            lista.deleteBook(book);
+            res.status(200).json({ message: "Livro deletado com sucesso!" });
         } catch (error) {
-            res.status(404).json({ message: "Erro ao deletar livro", error });
-        }
-    },
-
-    getTotalBooks: (req, res) => {
-        try {
-            res.status(200).json(lista.getTotalBooks());
-        } catch (error) {
-            res.status(400).json({ message: "Erro ao buscar total de livros", error });
+            res.status(404).json({ message: "Erro ao deletar livro"});
         }
     }
 }

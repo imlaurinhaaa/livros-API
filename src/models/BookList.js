@@ -3,20 +3,20 @@ class BookList {
         this.books = [];
     }
 
+    addBook(book) {
+        this.books.push(book);
+    }
+
     getAllBooks() {
         return this.books;
     }
 
     getBookById(id) {
         const book = this.books.find(book => book.id == id);
-        if(!song) {
+        if(!book) {
             throw new Error('Book not found');
         }
         return book;
-    }
-
-    addBook(book) {
-        this.books.push(book);
     }
 
     updateBook(id, updateData) {
@@ -27,10 +27,6 @@ class BookList {
 
     deleteBook(id) {
         this.books = this.books.filter(book => book.id != id);
-    }
-
-    getAllTotalBooks() {
-        return this.books.length;
     }
 }
 
