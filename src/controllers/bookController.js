@@ -67,4 +67,4 @@ const router = {
         }
     }
 }
-modelue.exports = router;
+module.exports = router;
