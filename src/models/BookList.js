@@ -33,3 +33,5 @@ class BookList {
         return this.books.length;
     }
 }
+
+module.exports = BookList;
