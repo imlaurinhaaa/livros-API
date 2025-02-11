@@ -33,17 +33,26 @@ const router = {
     getBookById: (req, res) => {
         try {
             const id = req.params.id;
+            console.log(id);
+            console.log(typeof id);
             res.status(200).json(lista.getBookById(id));
         } catch (error) {
-            res.status(404).json({ message: "Livro não encontrado"});
+            res.status(404).json({
+                message: "Erro ao buscar livro por id",
+                error: error.message,
+            });
         }
     },
+
 
     updateBook: (req, res) => {
         try {
             res.status(200).json(lista.updateBook(req.params.id, req.body));
         } catch (error) {
-            res.status(404).json({ message: "Erro ao atualizar livro"});
+            res.status(404).json({
+                message: "Erro ao atualizar",
+                error: error.message,
+            });
         }
     },
 

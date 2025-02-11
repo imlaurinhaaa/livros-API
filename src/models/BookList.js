@@ -12,9 +12,10 @@ class BookList {
     }
 
     getBookById(id) {
-        const book = this.books.find(book => book.id == id);
-        if(!book) {
-            throw new Error('Book not found');
+        const book = this.books.find((book) => book.id == id);
+        console.log('encontrado', book);
+        if (!book) {
+            throw new Error("Livro não encontrado");
         }
         return book;
     }
